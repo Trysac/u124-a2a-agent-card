@@ -19,6 +19,9 @@ classifiers = [
 ]
 dependencies = []
 
+[project.scripts]
+a2a-agent-card = "a2a_agent_card.__main__:main"
+
 [project.urls]
 Homepage = "https://github.com/Trysac/u124-a2a-agent-card"
 Source = "https://github.com/Trysac/u124-a2a-agent-card"
