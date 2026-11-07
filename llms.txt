@@ -1,0 +1,16 @@
+# a2a-agent-card
+
+> Build and validate A2A protocol Agent Cards against the v1.0.0 field rules, with JSON-path issues, media type and URL checks and the well-known discovery URL Python package `trysac-a2a-agent-card`, import name `a2a_agent_card`, MIT licensed,
+> Python >= 3.10, no runtime dependencies.
+
+## Docs
+
+- [README](README.md): problem, install, usage example
+- [AGENTS](AGENTS.md): commands, folder map, conventions, limits
+- [Architecture](docs/ARCHITECTURE.md): shape of the package and its public API
+- [Testing](docs/TESTING.md): how to run and extend the tests
+
+## Optional
+
+- [Stack](docs/STACK.md): tools used and discarded
+- [Changelog](CHANGELOG.md): release history
