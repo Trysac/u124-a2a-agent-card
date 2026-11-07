@@ -1,29 +1,19 @@
 # Architecture
 
-## Purpose
+## Overview
 
-`trysac-a2a-agent-card` is a small, dependency-free Python library: Build and validate A2A protocol Agent Cards against the v1.0.0 field rules, with JSON-path issues, media type and URL checks and the well-known discovery URL
+`trysac-a2a-agent-card` provides a zero-dependency implementation of the Agent2Agent (A2A) protocol specification v1.0.0 (section 4.4 Agent Discovery Objects and section 8.2 Discovery).
 
-## Shape
+## Components
 
-```text
-caller code --> a2a_agent_card (public API in __init__.py)
-                    |
-                    +-- pure functions, no I/O, no global state
-```
-
-- **Public API**: the names listed in `__all__` of `src/a2a_agent_card/__init__.py`. Anything else is
-  internal and may change without a major version.
-- **Errors**: invalid input raises built-in exceptions (`ValueError`, `TypeError`) with a clear
-  message; the library never prints or exits.
-- **Side effects**: none. If a feature needs I/O, isolate it in its own module behind a small
-  interface and record the choice in an ADR.
-
-## Quality contract
-
-`scripts/check.py` is the single definition of the gates; `fabrica.json` tells the factory and CI
-how to run it. See [TESTING.md](TESTING.md).
-
-## Decisions
-
-Architecture decisions are recorded in [decisions/](decisions/) as numbered ADRs.
+1. **Data Models (`Interface`, `Skill`, `Capabilities`, `Issue`)**:
+   Frozen dataclasses representing the core agent discovery objects defined by the A2A specification.
+2. **Builder (`build_card`)**:
+   Pure function that maps strongly-typed components into standard A2A agent card dictionary representations.
+3. **Validator (`validate_card`)**:
+   Deterministic validator that walks card structures, checking required fields, JSON data types, media types according to standard MIME conventions, URL schemes (enforcing `https` except for loopback addresses `localhost`, `127.0.0.1`, and `::1`), duplicate skill IDs, and unknown fields.
+   Returns sorted lists of `Issue` records (`error` or `warning`).
+4. **Discovery Helper (`well_known_url`)**:
+   Derives RFC 8615 well-known discovery URLs (`https://{origin}/.well-known/agent-card.json`).
+5. **Command Line Interface (`__main__.py`)**:
+   CLI entry point for running card validation in CI and automated pipelines.

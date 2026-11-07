@@ -9,4 +9,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Implement A2A v1.0.0 Agent Card builder, validator, and CLI
 - Initial project structure from the factory utility template.
