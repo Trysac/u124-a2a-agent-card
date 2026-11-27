@@ -4,8 +4,10 @@ Build and validate A2A protocol Agent Cards against the v1.0.0 field rules, with
 
 ## Installation
 
+Not published to PyPI yet. Install it from GitHub:
+
 ```bash
-pip install trysac-a2a-agent-card
+pip install "git+https://github.com/Trysac/u124-a2a-agent-card"
 ```
 
 ## Usage Example
